@@ -16,12 +16,13 @@
             <h4>{{ $note->notepollution }}</h4>
             <h4>{{ $note->noteenergy }}</h4>
             <h4>{{ $note->noteantenas }}</h4>
+            <br>
         </li>
 
         <li>
             <h3> La note finale est:{{ $note->notefinale }} </h3>
         </li>
-        
+
     </ul>
     @endforeach
 @endsection

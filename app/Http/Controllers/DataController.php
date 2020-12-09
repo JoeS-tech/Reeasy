@@ -34,7 +34,7 @@ class DataController extends Controller
 
     public function store_Dump(Request $request)
     {
-        $dum = new Dum();
+        $dum = new Dumtable();
         $dum->dumQty = $request->$dump;
         $dum->save();
     }

@@ -21,7 +21,9 @@
 </head>
 <body>
     <div id="app">
-        <div>@yield('noteFinale') </div>
+        <script>
+        <button v-on:click=''@yield('noteFinale')> Afficher le score </button>
+        </script>
     </div>
 </body>
 </html>
