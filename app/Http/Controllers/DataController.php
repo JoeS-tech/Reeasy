@@ -31,26 +31,12 @@ class DataController extends Controller
         $url_dump = 'https://koumoul.com/s/data-fair/api/v1/datasets/performances-collecte-oma-par-type-dechet-par-dept/lines?format=json06&q=06&q_mode=simple';
         $dump = file_get_contents($url_dump);
         $php_dump = json_decode($dump);
-        // $verre=$php_dump['TONNAGE_OMA_T']; // ?
-        // $papier=$php_dump['TONNAGE_OMA_T']; // ?
-        // $menage=$php_dump['TONNAGE_OMA_T']; // ?
-        // $thv=$php_dump['RATIO_OMA'];
-        // $thp=$php_dump['RATIO_OMA'];
-        // $thm=$php_dump['RATIO_OMA'];
-        // var_dump($dump);
-        dd($php_dump->results[15]->TONNAGE_OMA_T);
-        results[15]->TONNAGE_OMA_T
-
-        $year = 2017; /*Comment retourner la valeur des déchets pour une année spécifique? - Tableau multidimentionnel*/
-
-        if ($php_dump['Annee'] == $year) {
-            return $verre;
-            $papier;
-            $menage;
-            $thv;
-            $thp;
-            $thm;
-        }
+        // dd($php_dump->results[15]->TONNAGE_OMA_T);
+        $ton = $php_dump->results[15]->TONNAGE_OMA_T;
+        $hab = $php_dump->results[15]->POPULATION;
+        $moy_dump = ($ton / $hab) * 1000;
+        dd($ton, 'test', $ton, $hab, $moy_dump);
+        return $ton;
     }
 
     public function dumpcalculate($verre, $papier, $menage, $thv, $thp, $thm) // Fonction sera bouclée par groupe <C-2>
