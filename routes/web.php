@@ -21,3 +21,6 @@ Route::post('/storedump', 'DataController@store_Dump')->name('store.dump');
 // dans la même fonction
 
 Route::get('/getpollution', 'DataController@get_Pollution')->name('get.pollution');
+
+// Route pour récupérer les valeurs de Antenne par l'url.
+Route::get('/getantenne', 'DataController@get_Antenne')->name('get.antenne');

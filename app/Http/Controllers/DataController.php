@@ -109,6 +109,21 @@ class DataController extends Controller
     // print_r($csv);
     // echo '</pre>';
 
+
+    public function get_Antenne()
+    {
+        $test = "test affichage";
+        // dd ($test);
+        $url_antenne = 'https://data.opendatasoft.com/api/records/1.0/search/?dataset=sites_mobiles_2g-3g-4g_france_metropolitaine%40public&facet=technologies&facet=commune&facet=nom_epci&geofilter.distance=LATITUDE%2CLONGITUDE%2CRAYON';
+        $antenne = file_get_contents($url_antenne);
+        $php_antenne = json_decode($antenne);
+        dd($php_antenne);
+        /* $ton = $php_dump->results[15]->TONNAGE_OMA_T;
+        $hab = $php_dump->results[15]->POPULATION;
+        $moy_dump = ($ton / $hab) * 1000;
+        dd($ton, 'test', $ton, $hab, $moy_dump);
+        return $ton;*/
+    }
     /**
      * Store a newly created resource in storage.
      *
