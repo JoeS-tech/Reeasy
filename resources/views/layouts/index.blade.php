@@ -6,6 +6,16 @@
     Boucle pour afficher les notes de la table notefinale ($note) récupérés de la  BDD
     --}}
 
+
+
+@section('valdechets')
+<h3>
+{{$dump }}
+</h3>
+@endsection
+
+
+
 @section('noteFinale')
     @foreach($notefinale as $note)
     <ul>

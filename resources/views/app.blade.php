@@ -7,7 +7,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>Notes et scrore final</title>
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
@@ -21,9 +21,13 @@
 </head>
 <body>
     <div id="app">
-        <script>
-        <button v-on:click=''@yield('noteFinale')> Afficher le score </button>
-        </script>
+
+        <form action="@route('get.dump')" method="get">
+            <input type="submit" value="envoyer">
+        </form>
+    <a href="@route('get.dump')"> Valeurs brutes déchets</a>
+    <div> @yield('notefinale') </div>
+    <div> @yield('valdechets') </div>
     </div>
 </body>
 </html>
