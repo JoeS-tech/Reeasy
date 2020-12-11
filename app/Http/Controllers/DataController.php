@@ -24,54 +24,65 @@ class DataController extends Controller
      */
 
     /*Function to get the API response / Dump */
-    public function get_Dump($url_dump)
+    public function get_Dump()
     {
+        $test = "test affichage";
+        // dd ($test);
         $url_dump = 'https://koumoul.com/s/data-fair/api/v1/datasets/performances-collecte-oma-par-type-dechet-par-dept/lines?format=json06&q=06&q_mode=simple';
         $dump = file_get_contents($url_dump);
-        $php_dump=json_decode($dump);
-        $verre=$php_dump['TONNAGE_OMA_T']; // ?
-        $papier=$php_dump['TONNAGE_OMA_T']; // ?
-        $menage=$php_dump['TONNAGE_OMA_T']; // ?
-        $thv=$php_dump['RATIO_OMA'];
-        $thp=$php_dump['RATIO_OMA'];
-        $thm=$php_dump['RATIO_OMA'];
-        var_dump($dump);
-        dd($dump);
-        $year=2017; /*Comment retourner la valeur des déchets pour une année spécifique? - Tableau multidimentionnel*/
+        $php_dump = json_decode($dump);
+        // $verre=$php_dump['TONNAGE_OMA_T']; // ?
+        // $papier=$php_dump['TONNAGE_OMA_T']; // ?
+        // $menage=$php_dump['TONNAGE_OMA_T']; // ?
+        // $thv=$php_dump['RATIO_OMA'];
+        // $thp=$php_dump['RATIO_OMA'];
+        // $thm=$php_dump['RATIO_OMA'];
+        // var_dump($dump);
+        dd($php_dump->results[15]->TONNAGE_OMA_T);
+        results[15]->TONNAGE_OMA_T
 
-        if ($php_dump['Annee']==$year) {
-            return $verre;$papier;$menage;$thv;$thp;$thm;
+        $year = 2017; /*Comment retourner la valeur des déchets pour une année spécifique? - Tableau multidimentionnel*/
+
+        if ($php_dump['Annee'] == $year) {
+            return $verre;
+            $papier;
+            $menage;
+            $thv;
+            $thp;
+            $thm;
         }
     }
 
     public function dumpcalculate($verre, $papier, $menage, $thv, $thp, $thm) // Fonction sera bouclée par groupe <C-2>
     {
-        $dump= $verre + $papier + $menage;
+        $dump = $verre + $papier + $menage;
         $recyclable = $verre + $papier;
-        $tr=($recyclable/$dump)*10;
-        $th=$thv+$thp+$thm;
-        $nd=0.7*$tr + 0.3 * $th;
+        $tr = ($recyclable / $dump) * 10;
+        $th = $thv + $thp + $thm;
+        $nd = 0.7 * $tr + 0.3 * $th;
         dd($dump);
         return $nd;
     }
 
     // Arrondir les tonnages
 
-    function roundToDown($t){
-        return round($t/10, 0, PHP_ROUND_HALF_DOWN)* 10;
-        }
+    function roundToDown($t)
+    {
+        return round($t / 10, 0, PHP_ROUND_HALF_DOWN) * 10;
+    }
 
-    function roundToUp($t){
-        return round($t/10, 0, PHP_ROUND_HALF_UP)* 10;
-            }
+    function roundToUp($t)
+    {
+        return round($t / 10, 0, PHP_ROUND_HALF_UP) * 10;
+    }
 
     /*Function to store the recovered Dump value in the DB Table Dum*/
 
     // public function store_Dump(Request $request)
     // {
-        // $dum = new Dumtable();
-        // $dum->dumQty = $request->$dump;
-        // $dum->save();
+    // $dum = new Dumtable();
+    // $dum->dumQty = $request->$dump;
+    // $dum->save();
     // }
 
     //  file_get_contents— Lit tout un fichier dans une chaîne
@@ -87,10 +98,11 @@ class DataController extends Controller
 
     }
     // 1-fonction de la doc pour extraire les données d'un tableau et les afficher dans un tableau
-    function read($csv){
+    function read($csv)
+    {
 
         $file = fopen($csv, 'r');
-        while (!feof($file) ) {
+        while (!feof($file)) {
             $line[] = fgetcsv($file, 1024);
         }
         fclose($file);
@@ -99,17 +111,17 @@ class DataController extends Controller
 
     /* Json_decode pour convertir les résultats de l'url en PHP*/
 
-    $json = $line;
-    var_dump(json_decode($json));
-    var_dump(json_decode($json, true));
+    // $json = $line;
+    // var_dump(json_decode($json));
+    // var_dump(json_decode($json, true));
 
     // 2-Définir le chemin d'accès au fichier CSV
-    $url_csv = 'https://koumoul.com/s/data-fair/api/v1/datasets/performances-collecte-oma-par-type-dechet-par-dept/lines?format=json06&q=06&q_mode=simple';
-    $csv = '$url_csv';
-    $csv = read($csv);
-    echo '<pre>';
-    print_r($csv);
-    echo '</pre>';
+    // $url_csv = 'https://koumoul.com/s/data-fair/api/v1/datasets/performances-collecte-oma-par-type-dechet-par-dept/lines?format=json06&q=06&q_mode=simple';
+    // $csv = '$url_csv';
+    // $csv = read($csv);
+    // echo '<pre>';
+    // print_r($csv);
+    // echo '</pre>';
 
     /**
      * Store a newly created resource in storage.

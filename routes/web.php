@@ -2,10 +2,10 @@
 
 
 Route::get('/', function () {
-    return view('...');
+    return view('welcome');
 });
 
-Auth::routes();
+// Auth::routes();
 
 
 // Route pour afficher la vue contenant les données + notes etc.
