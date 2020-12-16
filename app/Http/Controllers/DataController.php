@@ -130,7 +130,7 @@ class DataController extends Controller
         $url_antenne = 'https://data.opendatasoft.com/api/records/1.0/search/?dataset=sites_mobiles_2g-3g-4g_france_metropolitaine%40public&facet=technologies&facet=commune&facet=nom_epci&geofilter.distance=41.56027025699052%2C9.317871286694595%2C300';
         $antenne = file_get_contents($url_antenne);
         $json_antenne = json_decode($antenne);
-        $note = array(0 => 10, 1 => 7, 2 => 6, 3 => 5, 4 => 4, 5 => 3, 6 => 2);
+        $note = array(0 => 10, 1 => 7, 2 => 6, 3 => 5, 4 => 4, 5 => 3, 6 => 2, 7 => 4, 8 => 3, 9 => 2, 10 => 1);
         //dd($json_antenne);
         return $note[$json_antenne->nhits];
     }
@@ -139,7 +139,7 @@ class DataController extends Controller
         $url_antenne = 'https://data.opendatasoft.com/api/records/1.0/search/?dataset=sites_mobiles_2g-3g-4g_france_metropolitaine%40public&facet=technologies&facet=commune&facet=nom_epci&geofilter.distance=41.56027025699052%2C9.317871286694595%2C500';
         $antenne = file_get_contents($url_antenne);
         $json_antenne = json_decode($antenne);
-        $note = array(0 => 10, 1 => 7, 2 => 6, 3 => 5, 4 => 4, 5 => 3, 6 => 2);
+        $note = array(0 => 10, 1 => 7, 2 => 6, 3 => 5, 4 => 4, 5 => 3, 6 => 2, 7 => 4, 8 => 3, 9 => 2, 10 => 1);
         //dd($json_antenne);
         return $note[$json_antenne->nhits];
     }
@@ -148,7 +148,7 @@ class DataController extends Controller
         $url_antenne = 'https://data.opendatasoft.com/api/records/1.0/search/?dataset=sites_mobiles_2g-3g-4g_france_metropolitaine%40public&facet=technologies&facet=commune&facet=nom_epci&geofilter.distance=41.56027025699052%2C9.317871286694595%2C750';
         $antenne = file_get_contents($url_antenne);
         $json_antenne = json_decode($antenne);
-        $note = array(0 => 10, 1 => 7, 2 => 6, 3 => 5, 4 => 4, 5 => 3, 6 => 2);
+        $note = array(0 => 10, 1 => 7, 2 => 6, 3 => 5, 4 => 4, 5 => 3, 6 => 2, 7 => 4, 8 => 3, 9 => 2, 10 => 1);
         //dd($json_antenne);
         return $note[$json_antenne->nhits];
     }
@@ -157,7 +157,7 @@ class DataController extends Controller
         $url_antenne = 'https://data.opendatasoft.com/api/records/1.0/search/?dataset=sites_mobiles_2g-3g-4g_france_metropolitaine%40public&facet=technologies&facet=commune&facet=nom_epci&geofilter.distance=41.56027025699052%2C9.317871286694595%2C1000';
         $antenne = file_get_contents($url_antenne);
         $json_antenne = json_decode($antenne);
-        $note = array(0 => 10, 1 => 7, 2 => 6, 3 => 5, 4 => 4, 5 => 3, 6 => 2);
+        $note = array(0 => 10, 1 => 7, 2 => 6, 3 => 5, 4 => 4, 5 => 3, 6 => 2, 7 => 4, 8 => 3, 9 => 2, 10 => 1);
         //dd($json_antenne);
         return $note[$json_antenne->nhits];
     }
