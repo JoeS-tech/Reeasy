@@ -7,7 +7,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>Notes et scrore final</title>
+    <title>Note Déchets</title>
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
@@ -19,15 +19,26 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
+<style>
+.border{
+    width: 400px;
+    border: 2px solid grey;
+    background-color: lightblue;
+    color: coral;
+}
+.center{
+   text-align: center;
+    display: block;
+    margin-left: auto;
+    margin-right: auto
+}
+.affichage {
+    background-color: aquamarine;
+}
+ </style>
 <body>
     <div id="app">
-
-        <form action="@route('get.dump')" method="get">
-            <input type="submit" value="envoyer">
-        </form>
-    <a href="@route('get.dump')"> Valeurs brutes déchets</a>
-    <div> @yield('notefinale') </div>
-    <div> @yield('valdechets') </div>
-    </div>
+    <a href="@route('nd.dump')" target="_blank" class="affichage">Note déchets</a>
+     </div>
 </body>
 </html>
