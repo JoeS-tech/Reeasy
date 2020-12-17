@@ -33,6 +33,8 @@ Route::get('/affichage', 'DataController@affichage')->name('affichage');
 // Route pour récupérer les valeurs de Antenne par l'url.
 
 Route::get('/getantenne', 'DataController@get_Antenne')->name('get.antenne');
+// // Route pour récupérer les valeurs de Antenne par l'url.
+// Route::get('/getantenne', 'DataController@get_Antenne')->name('get.antenne');
 
 // Routes pour le paramètre transport********************-----------*****************-----------*************
 
@@ -57,3 +59,9 @@ Route::get('/getantenne/{rayon}', 'DataController@get_Antenne');
 
 // Route pour récupérer les valeurs de calc_Antenne par l'url.
 Route::get('/calcantenne/{rayon}', 'DataController@calc_Antenne')->name('calc.antenne');
+
+// Route pour récupérer les valeurs de calc_Antenne par l'url.
+Route::get('/calcantenne/{rayon}', 'DataController@calc_Antenne')->name('calc.antenne');
+
+// Route pour récupérer les valeurs de Antenne1000 par l'url.
+Route::get('/getantenne1000', 'DataController@get_Antenne1000')->name('get.antenne1000');
