@@ -35,6 +35,9 @@
 .affichage {
     background-color: aquamarine;
 }
+body {
+    
+}
  </style>
 <body>
     <div id="app">
