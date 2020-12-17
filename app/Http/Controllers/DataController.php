@@ -17,40 +17,77 @@ class DataController extends Controller
         return view('home');
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
 
-    /*Function to get the API response / Dump */
     public function get_Dump()
     {
-        $test = "test affichage";
-        // dd ($test);
         $url_dump = 'https://koumoul.com/s/data-fair/api/v1/datasets/performances-collecte-oma-par-type-dechet-par-dept/lines?format=json06&q=06&q_mode=simple';
         $dump = file_get_contents($url_dump);
         $php_dump = json_decode($dump);
-        // dd($php_dump->results[15]->TONNAGE_OMA_T);
-        $ton = $php_dump->results[15]->TONNAGE_OMA_T;
+        $verre = $php_dump->results[15]->TONNAGE_OMA_T;
+        $emballage = $php_dump->results[14]->TONNAGE_OMA_T;
+        $menageres = $php_dump->results[13]->TONNAGE_OMA_T;
         $hab = $php_dump->results[15]->POPULATION;
-        $moy_dump = ($ton / $hab) * 1000;
-        dd($ton, 'test', $ton, $hab, $moy_dump);
-        return $ton;
+        $total_dechets = $verre + $emballage + $menageres;
+        $recyclable = $verre + $emballage;
+
+        // echo " (Je suis un Echo de la get_Dump) Le Tonnage recycleble est $recyclable";
+
+        $tr = ($recyclable / $total_dechets) * 10;
+
+        // echo " TR est $tr";
+
+        return ["tr" => $tr, "total" => $total_dechets, "hab" => $hab];
     }
 
-    public function dumpcalculate($verre, $papier, $menage, $thv, $thp, $thm) // Fonction sera bouclée par groupe <C-2>
+    /*Calcul de la note TH pour le paramètre Dump*/
+
+    public function th_Calculate($a, $b)
     {
-        $dump = $verre + $papier + $menage;
-        $recyclable = $verre + $papier;
-        $tr = ($recyclable / $dump) * 10;
-        $th = $thv + $thp + $thm;
-        $nd = 0.7 * $tr + 0.3 * $th;
-        dd($dump);
-        return $nd;
+        $notes = [10 => 520, 9 => 530, 8 => 540, 7 => 550, 6 => 560, 5 => 570, 4 => 580, 3 => 590, 2 => 600, 1 => 610];
+
+        $dumpNote = 0;
+
+        // $dump_hab=540;
+
+        $dump_hab = $a / $b;
+        // dd($notes);
+        foreach ($notes as $key => $value) {
+            if ($dump_hab <= $value && $key > $dumpNote) {
+                $dumpNote = $key;
+            }
+            // dd($value);
+        }
+        //    dd($dumpNote);
+        return $dumpNote;
     }
 
-    // Arrondir les tonnages
+    public function noteDump()
+    {
+        $c = $this->get_Dump();
+        $test = $this->th_Calculate($c["total"], $c["hab"]);
+        return view('index', ['th' => $test]);
+        //   dd($test);
+    }
+
+    public function note_Finale_Dump()
+    {
+        $tr_dump = $this->get_Dump();
+        //dd($tr_dump["tr"]);
+        $test = $tr_dump["tr"];
+        // dd($test);
+        $th_dump = $this->th_Calculate($tr_dump["total"], $tr_dump["hab"]);
+        // dd($th_dump);
+
+        $nd = 0.7 * $test + 0.3 * $th_dump;
+        // dd($nd);
+        return view('index', ['notedechets' => $nd]);
+    }
+
+    public function affichage()
+    {
+        return view('layouts/aff');
+    }
+
 
     function roundToDown($t)
     {
@@ -72,17 +109,17 @@ class DataController extends Controller
     // }
 
     //  file_get_contents— Lit tout un fichier dans une chaîne
-    public function get_Pollution()
-    {
-        $pollution = file_get_contents('https://trouver.datasud.fr/dataset/c9b4ec5b-fa45-4d71-b72a-9a067564b3fe/resource/787a02c2-0ae6-
-        43d9-ab08-aecc6a56435e/download/mes_sudpaca_annuelle.csv');
+    // public function get_Pollution()
+    // {
+    //     $pollution = file_get_contents('https://trouver.datasud.fr/dataset/c9b4ec5b-fa45-4d71-b72a-9a067564b3fe/resource/787a02c2-0ae6-
+    //     43d9-ab08-aecc6a56435e/download/mes_sudpaca_annuelle.csv');
 
 
-        // str_getcsv($pollution);
-        // json_decode($pollution);
-        // dd($pollution);
+    // str_getcsv($pollution);
+    // json_decode($pollution);
+    // dd($pollution);
 
-    }
+    //}
     // 1-fonction de la doc pour extraire les données d'un tableau et les afficher dans un tableau
     function read($csv)
     {
@@ -110,6 +147,17 @@ class DataController extends Controller
     // echo '</pre>';
 
 
+<<<<<<< HEAD
+    // public function get_Antenne()
+    // {
+    //     $test = "test affichage";
+    //     // dd ($test);
+    //     $url_antenne = 'https://data.opendatasoft.com/api/records/1.0/search/?dataset=sites_mobiles_2g-3g-4g_france_metropolitaine%40public&facet=technologies&facet=commune&facet=nom_epci&geofilter.distance=LATITUDE%2CLONGITUDE%2CRAYON';
+    //     $antenne = file_get_contents($url_antenne);
+    //     $php_antenne = json_decode($antenne);
+    //     dd($php_antenne);
+    // }
+=======
     public function get_Antenne($RAYON)
     {
         $test = "test affichage";
@@ -157,6 +205,7 @@ class DataController extends Controller
             return $note[$json_antenne->nhits];
         }
     }
+<<<<<<< HEAD
 
     // public function get_antenne300()
     // {
@@ -194,16 +243,19 @@ class DataController extends Controller
     //     //dd($json_antenne);
     //     return $note[$json_antenne->nhits];
     // }
+=======
+>>>>>>> 5dd59523fe8bf5753f3cc28b916e022be9cd8013
+>>>>>>> f9743110a265b063f60f6a359cbffcb0dbff70db
     /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
-        //
-    }
+    // public function store(Request $request)
+    // {
+    //     //
+    // }
 
     /**
      * Display the specified resource.
@@ -218,10 +270,10 @@ class DataController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
-    {
-        //
-    }
+    // public function edit($id)
+    // {
+    //     //
+    // }
 
     /**
      * Update the specified resource in storage.
@@ -230,15 +282,16 @@ class DataController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
-    {
-        //
-    }
+    // public function update(Request $request, $id)
+    // {
+    //     //
+    // }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
+    //     /**
+    //      * Remove the specified resource from storage.
+    //      *
+    //      * @param  int  $id
+    //      * @return \Illuminate\Http\Response
+    //      */
 }

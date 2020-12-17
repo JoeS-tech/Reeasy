@@ -32,11 +32,13 @@
     margin-left: auto;
     margin-right: auto
 }
+.affichage {
+    background-color: aquamarine;
+}
  </style>
 <body>
     <div id="app">
-        <div class="border center"> @yield('notedump') </div>
-        <a href="@route('nd.dump')" target="_blank" >Note déchets</a>
-    </div>
+    <a href="@route('nd.dump')" target="_blank" class="affichage">Note déchets</a>
+     </div>
 </body>
 </html>
