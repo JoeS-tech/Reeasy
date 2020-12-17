@@ -29,9 +29,8 @@ Route::get('/notefin', 'DataController@notefinaledump')->name('nf.dump');
 // Route pour afficher le lien pour la  note finale TOTALE de dump dans une autre vue (index).
 Route::get('/affichage', 'DataController@affichage')->name('affichage');
 
-// Route pour récupérer les valeurs de Antenne par l'url.
-<<<<<<< HEAD
-Route::get('/getantenne', 'DataController@get_Antenne')->name('get.antenne');
+// // Route pour récupérer les valeurs de Antenne par l'url.
+// Route::get('/getantenne', 'DataController@get_Antenne')->name('get.antenne');
 
 // Routes pour le paramètre transport********************-----------*****************-----------*************
 
@@ -40,7 +39,6 @@ Route::get('/gettrans', 'ParametreController@aff_Json')->name('get.trans');
 
 
 
-=======
 Route::get('/getantenne/{rayon}', 'DataController@get_Antenne');
 
 // Route pour récupérer les valeurs de Antenne300 par l'url.
@@ -54,4 +52,3 @@ Route::get('/getantenne750', 'DataController@get_Antenne750')->name('get.antenne
 
 // Route pour récupérer les valeurs de Antenne1000 par l'url.
 Route::get('/getantenne1000', 'DataController@get_Antenne1000')->name('get.antenne1000');
->>>>>>> 5dd59523fe8bf5753f3cc28b916e022be9cd8013
