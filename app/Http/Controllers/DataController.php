@@ -147,7 +147,6 @@ class DataController extends Controller
     // echo '</pre>';
 
 
-<<<<<<< HEAD
     // public function get_Antenne()
     // {
     //     $test = "test affichage";
@@ -157,7 +156,7 @@ class DataController extends Controller
     //     $php_antenne = json_decode($antenne);
     //     dd($php_antenne);
     // }
-=======
+
     public function get_Antenne($RAYON)
     {
         $test = "test affichage";
@@ -205,7 +204,6 @@ class DataController extends Controller
             return $note[$json_antenne->nhits];
         }
     }
-<<<<<<< HEAD
 
     // public function get_antenne300()
     // {
@@ -243,9 +241,7 @@ class DataController extends Controller
     //     //dd($json_antenne);
     //     return $note[$json_antenne->nhits];
     // }
-=======
->>>>>>> 5dd59523fe8bf5753f3cc28b916e022be9cd8013
->>>>>>> f9743110a265b063f60f6a359cbffcb0dbff70db
+
     /**
      * Store a newly created resource in storage.
      *
