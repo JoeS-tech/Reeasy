@@ -147,6 +147,7 @@ class DataController extends Controller
     // echo '</pre>';
 
 
+<<<<<<< HEAD
     // public function get_Antenne()
     // {
     //     $test = "test affichage";
@@ -156,6 +157,59 @@ class DataController extends Controller
     //     $php_antenne = json_decode($antenne);
     //     dd($php_antenne);
     // }
+=======
+    public function get_Antenne($RAYON)
+    {
+        $test = "test affichage";
+        // dd ($test);
+        $url_antenne = 'https://data.opendatasoft.com/api/records/1.0/search/?dataset=sites_mobiles_2g-3g-4g_france_metropolitaine%40public&facet=technologies&facet=commune&facet=nom_epci&geofilter.distance=41.56027025699052%2C9.317871286694595%2C' . $RAYON;
+        $antenne = file_get_contents($url_antenne);
+        $json_antenne = json_decode($antenne);
+        dd($json_antenne);
+        return $json_antenne;
+        /* $ton = $php_dump->results[15]->TONNAGE_OMA_T;
+        $hab = $php_dump->results[15]->POPULATION;
+        $moy_dump = ($ton / $hab) * 1000;
+        dd($ton, 'test', $ton, $hab, $moy_dump);
+        return $ton;*/
+    }
+    public function get_antenne300()
+    {
+        $url_antenne = 'https://data.opendatasoft.com/api/records/1.0/search/?dataset=sites_mobiles_2g-3g-4g_france_metropolitaine%40public&facet=technologies&facet=commune&facet=nom_epci&geofilter.distance=41.56027025699052%2C9.317871286694595%2C300';
+        $antenne = file_get_contents($url_antenne);
+        $json_antenne = json_decode($antenne);
+        $note = array(0 => 10, 1 => 7, 2 => 6, 3 => 5, 4 => 4, 5 => 3, 6 => 2, 7 => 1, 8 => 0, 9 => 0, 10 => 0);
+        //dd($json_antenne);
+        return $note[$json_antenne->nhits];
+    }
+    public function get_antenne500()
+    {
+        $url_antenne = 'https://data.opendatasoft.com/api/records/1.0/search/?dataset=sites_mobiles_2g-3g-4g_france_metropolitaine%40public&facet=technologies&facet=commune&facet=nom_epci&geofilter.distance=41.56027025699052%2C9.317871286694595%2C500';
+        $antenne = file_get_contents($url_antenne);
+        $json_antenne = json_decode($antenne);
+        $note = array(0 => 10, 1 => 8, 2 => 7, 3 => 6, 4 => 5, 5 => 4, 6 => 3, 7 => 2, 8 => 1, 9 => 0, 10 => 0);
+        //dd($json_antenne);
+        return $note[$json_antenne->nhits];
+    }
+    public function get_antenne750()
+    {
+        $url_antenne = 'https://data.opendatasoft.com/api/records/1.0/search/?dataset=sites_mobiles_2g-3g-4g_france_metropolitaine%40public&facet=technologies&facet=commune&facet=nom_epci&geofilter.distance=41.56027025699052%2C9.317871286694595%2C750';
+        $antenne = file_get_contents($url_antenne);
+        $json_antenne = json_decode($antenne);
+        $note = array(0 => 10, 1 => 9, 2 => 8, 3 => 7, 4 => 6, 5 => 5, 6 => 4, 7 => 3, 8 => 2, 9 => 1, 10 => 0);
+        //dd($json_antenne);
+        return $note[$json_antenne->nhits];
+    }
+    public function get_antenne1000()
+    {
+        $url_antenne = 'https://data.opendatasoft.com/api/records/1.0/search/?dataset=sites_mobiles_2g-3g-4g_france_metropolitaine%40public&facet=technologies&facet=commune&facet=nom_epci&geofilter.distance=41.56027025699052%2C9.317871286694595%2C1000';
+        $antenne = file_get_contents($url_antenne);
+        $json_antenne = json_decode($antenne);
+        $note = array(0 => 10, 1 => 10, 2 => 9, 3 => 8, 4 => 7, 5 => 6, 6 => 5, 7 => 4, 8 => 3, 9 => 2, 10 => 1);
+        //dd($json_antenne);
+        return $note[$json_antenne->nhits];
+    }
+>>>>>>> 5dd59523fe8bf5753f3cc28b916e022be9cd8013
     /**
      * Store a newly created resource in storage.
      *
