@@ -9,7 +9,7 @@
 
 
 @section('notedump')
-<h3>
+<h3 class="rouge">
 {{$notedechets }}
 </h3>
 @endsection

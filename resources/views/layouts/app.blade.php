@@ -27,16 +27,102 @@
     color: coral;
 }
 .center{
-   text-align: center;
+    text-align: center;
     display: block;
     margin-left: auto;
     margin-right: auto
 }
+.rouge{
+    color: red;
+}
+
+html, body {
+                background-image: url('storage/assets/uploads/GreenNote-accueil.png');
+                background-position: top;
+                background-repeat: no-repeat;
+                color: #636b6f;
+                font-family: 'Nunito', sans-serif;
+                font-weight: 200;
+                height: 100vh;
+                margin: 0;
+            }
+
+            .full-height {
+                height: 100vh;
+            }
+
+            .flex-center {
+                align-items: center;
+                display: flex;
+                justify-content: center;
+            }
+
+            .position-ref {
+                position: relative;
+            }
+
+            .top-right {
+                position: absolute;
+                right: 10px;
+                top: 18px;
+            }
+
+            .content {
+                text-align: center;
+            }
+
+            .title {
+                font-size: 84px;
+                color: green;
+                /* width: 50px; */
+            }
+
+            .links > a {
+                padding: 0 25px;
+                font-size: 13px;
+                font-weight: 600;
+                letter-spacing: .1rem;
+                text-decoration: none;
+                text-transform: uppercase;
+            }
+
+            .m-b-md{
+                margin-top: 200px;
+            }
+
+            .btn{
+                font-size: large;
+                color: grey;
+            }
+
+            @media (max-width: 768px) {
+                h1 {
+                    font-size: 30px;
+                }
+                h3 {
+                    font-size: 20px;
+                }
+                body {
+                    padding-top: 8rem;
+                    padding-bottom: 8rem;
+                }
+
+                }
+            }
+
  </style>
 <body>
-    <div id="app">
-        <div class="border center"> @yield('notedump') </div>
-        {{-- <a href="@route('nd.dump')" target="_blank" >Note déchets</a> --}}
+    <div class="flex-center position-ref full-height">
+        <div class="content">
+            <div class="title m-b-md">
+                Green Note <br>
+                <img src="Picto2.png">
+            </div>
+
+            <div class="links btn ">
+                <p class="rouge"> Collecte des déchets : @yield('notedump')</p>
+            </div>
+        </div>
     </div>
 </body>
 </html>
