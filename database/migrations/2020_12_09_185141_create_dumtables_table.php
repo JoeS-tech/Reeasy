@@ -15,7 +15,7 @@ class CreateDumtablesTable extends Migration
     {
         Schema::create('dumtables', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->varchar('totaldump');
+            $table->varchar('notedump');
             $table->timestamps();
         });
     }

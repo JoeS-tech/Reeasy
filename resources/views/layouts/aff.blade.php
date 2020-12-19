@@ -35,10 +35,90 @@
 .affichage {
     background-color: aquamarine;
 }
- </style>
+
+html, body {
+                background-image: url('storage/assets/uploads/GreenNote-accueil.png');
+                background-position: top;
+                background-repeat: no-repeat;
+                color: #636b6f;
+                font-family: 'Nunito', sans-serif;
+                font-weight: 200;
+                height: 100vh;
+                margin: 0;
+            }
+
+            .full-height {
+                height: 100vh;
+            }
+
+            .flex-center {
+                align-items: center;
+                display: flex;
+                justify-content: center;
+            }
+
+            .position-ref {
+                position: relative;
+            }
+
+            .top-right {
+                position: absolute;
+                right: 10px;
+                top: 18px;
+            }
+
+            .content {
+                text-align: center;
+            }
+
+            .title {
+                font-size: 84px;
+            }
+
+            .links > a {
+                color: #636b6f;
+                padding: 0 25px;
+                font-size: 13px;
+                font-weight: 600;
+                letter-spacing: .1rem;
+                text-decoration: none;
+                text-transform: uppercase;
+            }
+
+            .m-b-md{
+                margin-top: 200px;
+            }
+
+            .btn{
+                font-size: large;
+                color: grey;
+            }
+
+            @media (max-width: 768px) {
+                h1 {
+                    font-size: 30px;
+                }
+                h3 {
+                    font-size: 20px;
+                }
+                body {
+                    padding-top: 8rem;
+                    padding-bottom: 8rem;
+                }
+            }
+
+</style>
 <body>
-    <div id="app">
-    <a href="@route('nd.dump')" target="_blank" class="affichage">Note déchets</a>
-     </div>
+    <div class="flex-center position-ref full-height">
+        <div class="content">
+            <div class="title m-b-md">
+                Reeasy
+            </div>
+
+            <div class="links btn">
+                <button type="button" class="btn"><a class="btn" href="@route('nd.dump')" target="_blank"> Note déchets</a></button>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
