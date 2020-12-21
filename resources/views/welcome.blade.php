@@ -12,7 +12,7 @@
         <!-- Styles -->
         <style>
             html, body {
-                background-image: url('storage/assets/uploads/GreenNote-accueil.png');
+                background-image: url('./storage/assets/uploads/GreenNote-accueil.png');
                 background-position: top;
                 background-repeat: no-repeat;
                 color: #636b6f;
@@ -48,6 +48,8 @@
 
             .title {
                 font-size: 84px;
+                color: green;
+                font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
             }
 
             .links > a {
@@ -106,9 +108,10 @@
                 </div>
 
                 <div class="links btn">
-                    <button type="button" class="btn"><a href="@route('home')">Home</a></button>
-                    <button type="button" class="btn"><a href="@route('get.dump')"> Valeurs brutes déchets</a></button>
-                    <button type="button" class="btn"><a href="@route('calcantenne/{rayon}')"> Calc Antenne</a></button>
+                    <button type="button" class="btn"><a href="@route('nd.dump')"> Valeurs brutes déchets</a></button>
+                    <button type="button" class="btn"><a href="@route('get.all.antenne')"> Get Antenne</a></button>
+                    {{-- <button type="button" class="btn"><a href="@route('calc.antenne','300')"> Get Antenne</a></button> --}}
+
                     {{-- <a href="https://laravel.com/docs">Docs</a>
                     <a href="https://laracasts.com">Laracasts</a>
                     <a href="https://laravel-news.com">News</a>

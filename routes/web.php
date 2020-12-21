@@ -41,8 +41,6 @@ Route::get('/getantenne', 'DataController@get_Antenne')->name('get.antenne');
 // Route pour tester l'affichage de la data de l'url json Transport
 Route::get('/gettrans', 'ParametreController@aff_Json')->name('get.trans');
 
-
-
 Route::get('/getantenne/{rayon}', 'DataController@get_Antenne');
 
 // // Route pour récupérer les valeurs de Antenne300 par l'url.
@@ -70,3 +68,5 @@ Route::get('/getantenne1000', 'DataController@get_Antenne1000')->name('get.anten
 
 // Route pour pollution.
 Route::get('/pollution', 'TestController@get_Pollution');
+// Route pour récupérer les valeurs de All_Antenne par l'url.
+Route::get('/getallantenne', 'DataController@All_Antenne')->name('get.all.antenne');

@@ -37,9 +37,7 @@
 }
 
 html, body {
-                background-image: url('storage/assets/uploads/GreenNote-accueil.png');
-                background-position: top;
-                background-repeat: no-repeat;
+
                 color: #636b6f;
                 font-family: 'Nunito', sans-serif;
                 font-weight: 200;
@@ -112,15 +110,19 @@ html, body {
 
  </style>
 <body>
+    <div id="app">
+        {{-- <div class="border center"> @yield('notedump') </div> --}}
+        {{-- <a href="@route('nd.dump')" target="_blank" >Note déchets</a> --}}
     <div class="flex-center position-ref full-height">
         <div class="content">
             <div class="title m-b-md">
                 Green Note <br>
                 <img src="Picto2.png">
             </div>
-
             <div class="links btn ">
                 <p class="rouge"> Collecte des déchets : @yield('notedump')</p>
+                <p class="rouge"> Get Anetenne : @yield('noteantenne')</p>
+                {{-- <p>{% images %}</p> --}}
             </div>
         </div>
     </div>
