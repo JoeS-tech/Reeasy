@@ -65,3 +65,8 @@ Route::get('/calcantenne/{rayon}', 'DataController@calc_Antenne')->name('calc.an
 
 // Route pour récupérer les valeurs de Antenne1000 par l'url.
 Route::get('/getantenne1000', 'DataController@get_Antenne1000')->name('get.antenne1000');
+
+//--------------abdel pollution
+
+// Route pour pollution.
+Route::get('/pollution', 'TestController@get_Pollution');
