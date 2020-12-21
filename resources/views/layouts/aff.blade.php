@@ -35,6 +35,9 @@
 .affichage {
     background-color: aquamarine;
 }
+.vert {
+    color: green;
+}
 
 html, body {
                 background-image: url('storage/assets/uploads/GreenNote-accueil.png');
@@ -116,7 +119,7 @@ html, body {
             </div>
 
             <div class="links btn">
-                <button type="button" class="btn"><a class="btn" href="@route('parametre')" target="_blank"> Obtenir les notes des paramètres</a></button>
+                <button type="button" class="btn"><a class="btn" href="@route('parametre')" target="_blank"> <span class="vert"> Obtenir la Green Note</span></a></button>
             </div>
         </div>
     </div>
