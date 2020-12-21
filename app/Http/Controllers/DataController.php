@@ -77,27 +77,25 @@ class DataController extends Controller
     {
         return view('layouts/aff');
     }
-
-    public function get_Antenne($RAYON)
-    {
-        $test = "test affichage";
-        // dd ($test);
-        $url_antenne = 'https://data.opendatasoft.com/api/records/1.0/search/?dataset=sites_mobiles_2g-3g-4g_france_metropolitaine%40public&facet=technologies&facet=commune&facet=nom_epci&geofilter.distance=41.56027025699052%2C9.317871286694595%2C' . $RAYON;
-        $antenne = file_get_contents($url_antenne);
-        $json_antenne = json_decode($antenne);
-        dd($json_antenne);
-        return $json_antenne;
-    }
+/*-----------------------------------------------------Début fonction Antenne-----------------------------------------------*/
+    // public function get_Antenne($RAYON)
+    // {
+    //     $test = "test affichage";
+    //     $url_antenne = 'https://data.opendatasoft.com/api/records/1.0/search/?dataset=sites_mobiles_2g-3g-4g_france_metropolitaine%40public&facet=technologies&facet=commune&facet=nom_epci&geofilter.distance=41.56027025699052%2C9.317871286694595%2C' . $RAYON;
+    //     $antenne = file_get_contents($url_antenne);
+    //     $json_antenne = json_decode($antenne);
+    //     dd($json_antenne);
+    //     return $json_antenne;
+    // }
     //-------------------------------- Stockage déchets dans la base de données
 
-    public function store_Dump(Request $request)
-    {
-        $dump = $this->note_Finale_Dump();
-        $dum = new Dumtable();
-        $dum->dumQty = $request->$dump;
-        $dum->save();
-    }
-
+    // public function store_Dump(Request $request)
+    // {
+    //     $dump = $this->note_Finale_Dump();
+    //     $dum = new Dumtable();
+    //     $dum->dumQty = $request->$dump;
+    //     $dum->save();
+    // }
 
     //--------------------- fin stockage
     public function calc_Antenne($RAYON)
@@ -108,6 +106,7 @@ class DataController extends Controller
 
         if ($RAYON < 0 || $RAYON <= 300) {
             $note = array(0 => 10, 1 => 7, 2 => 6, 3 => 5, 4 => 4, 5 => 3, 6 => 2, 7 => 1, 8 => 0, 9 => 0, 10 => 0);
+            return $note[$json_antenne->nhits];
             //dd($json_antenne);
             return  'Dans un rayon de 300 mètres: ' . $note[$json_antenne->nhits];
         } elseif ($RAYON < 300 || $RAYON <= 500) {
