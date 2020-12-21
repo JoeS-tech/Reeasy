@@ -8,11 +8,13 @@
 
 
 
+
 @section('notedump')
-<h3>
+<p> {% images %} </p>
+{{-- <h3>
 {{$notedechets}}
 <h3 class="rouge">
 {{$notedechets }}
-</h3>
+</h3> --}}
 @endsection
 

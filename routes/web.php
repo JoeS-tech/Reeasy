@@ -57,3 +57,6 @@ Route::get('/getantenne/{rayon}', 'DataController@get_Antenne');
 
 // Route pour récupérer les valeurs de calc_Antenne par l'url.
 Route::get('/calcantenne/{rayon}', 'DataController@calc_Antenne')->name('calc.antenne');
+
+// Route pour récupérer les valeurs de All_Antenne par l'url.
+Route::get('/getallantenne', 'DataController@All_Antenne')->name('get.all.antenne');
