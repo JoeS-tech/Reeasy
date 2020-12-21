@@ -9,28 +9,15 @@ Route::get('/', function () {
 // Auth::routes();
 
 
-// Route pour afficher la vue contenant les données + notes etc.
 Route::get('/home', 'HomeController@index')->name('home');
 
-// Route pour récupérer les valeurs de Dump par l'url.
-Route::get('/getdump', 'DataController@get_Dump')->name('get.dump');
-
-// Route pour afficher la note dump .
-Route::get('/notedump', 'DataController@noteDump');
-
-// Route pour afficher la note dump .
-Route::get('/thcalcul', 'DataController@th_Calculate');
-
-// Route pour afficher la note finale nd de dump .
-Route::get('/nddump', 'DataController@note_Finale_Dump')->name('nd.dump');
-
-// Route pour afficher la note finale TOTALE de dump .
-Route::get('/notefin', 'DataController@notefinaledump')->name('nf.dump');
-
-// Route pour afficher le lien pour la  note finale TOTALE de dump dans une autre vue (index).
+// Page de garde
 Route::get('/affichage', 'DataController@affichage')->name('affichage');
 
-// Route pour récupérer les valeurs de Antenne par l'url.
+// Green Note
+Route::get('/parametres', 'DataController@parametre')->name('parametre');
+
+//************-------------***********Antenne***********--------------**************
 
 Route::get('/getantenne', 'DataController@get_Antenne')->name('get.antenne');
 // // Route pour récupérer les valeurs de Antenne par l'url.
@@ -70,8 +57,3 @@ Route::get('/getantenne1000', 'DataController@get_Antenne1000')->name('get.anten
 Route::get('/pollution', 'TestController@get_Pollution');
 // Route pour récupérer les valeurs de All_Antenne par l'url.
 Route::get('/getallantenne', 'DataController@All_Antenne')->name('get.all.antenne');
-
-
-//--------------test affichage deux param dans la même vue
-
-Route::get('/parametres', 'DataController@parametre')->name('parametre');

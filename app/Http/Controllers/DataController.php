@@ -70,8 +70,6 @@ class DataController extends Controller
         $nd = 0.7 * $test + 0.3 * $th_dump;
         $b = number_format($nd, 2);
         return $b;
-
-        // return view('index', ['notedechets' => $b]);
     }
 
     public function affichage()
@@ -79,20 +77,13 @@ class DataController extends Controller
         return view('layouts/aff');
     }
 
-
-    /*-----début test affichage deux paramètres dans la même vue--------*/
-    /*-----------------------------------------------------Début--- fonction Antenne-----------------------------------------------*/
-
-
     public function parametre()
     {
         $param1 = $this->note_Finale_Dump();
-        // dd($param1);
         $param2 = $this->All_Antenne();
-        // dd($param2);
-        return view('index', ['notedechets' => $param1], ['noteantenne' => $param2]);
+        $param3 = ($param1 + $param2) / 2;
+        return view('index', ['notedechets' => $param1, 'noteantenne' => $param2, 'notefinale' => $param3]);
     }
-    /*-----------------------------------------------------fin --fonction Antenne-----------------------------------------------*/
     public function calc_Antenne($RAYON)
     {
         $url_antenne = 'https://data.opendatasoft.com/api/records/1.0/search/?dataset=sites_mobiles_2g-3g-4g_france_metropolitaine%40public&facet=technologies&facet=commune&facet=nom_epci&geofilter.distance=41.56027025699052%2C9.317871286694595%2C' . $RAYON;

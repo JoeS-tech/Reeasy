@@ -35,6 +35,11 @@
 .rouge{
     color: red;
 }
+.bleu{
+    color: blue;
+    font-size: 30px;
+    font-weight: bold;
+}
 
 html, body {
 
@@ -107,22 +112,25 @@ html, body {
 
                 }
             }
-
  </style>
 <body>
     <div id="app">
-        {{-- <div class="border center"> @yield('notedump') </div> --}}
-        {{-- <a href="@route('nd.dump')" target="_blank" >Note déchets</a> --}}
-    <div class="flex-center position-ref full-height">
-        <div class="content">
-            <div class="title m-b-md">
-                Green Note <br>
-                <img src="Picto2.png">
-            </div>
-            <div class="links btn ">
-                <p class="rouge"> Collecte des déchets : @yield('notedump')</p>
-                <p class="rouge"> Get Anetenne : @yield('noteantenne')</p>
-                {{-- <p>{% images %}</p> --}}
+        <div class="flex-center position-ref full-height">
+            <div class="content">
+
+                <div class="title m-b-md">
+                    Green Note <br>
+                    <img src="Note3.png">
+                </div>
+
+                <div class="links btn ">
+                    <p class="bleu">  Voici votre Green note :  @yield('notefinale')</p>
+
+                    <p class="rouge">  <img src="Picto2.png"> Réseau propre : @yield('noteantenne')</p>
+                  
+                    <p class="rouge">  <img src="Picto2.png">Collecte des déchets : @yield('notedump')</p>
+                </div>
+
             </div>
         </div>
     </div>
