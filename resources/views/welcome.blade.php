@@ -108,8 +108,7 @@
                 </div>
 
                 <div class="links btn">
-                    <button type="button" class="btn"><a href="@route('home')">Home</a></button>
-                    <button type="button" class="btn"><a href="@route('get.dump')"> Valeurs brutes déchets</a></button>
+                    <button type="button" class="btn"><a href="@route('nd.dump')"> Valeurs brutes déchets</a></button>
                     <button type="button" class="btn"><a href="@route('get.all.antenne')"> Get Antenne</a></button>
                     {{-- <button type="button" class="btn"><a href="@route('calc.antenne','300')"> Get Antenne</a></button> --}}
 

@@ -49823,21 +49823,21 @@
                     info: null,
                     icon: 0,
                     images: [
-                        './js/Green-note-vert.png',
-                        './js/Green-note-jaune.png',
-                        './js/Green-note-rouge.png'
+                        './storage/assets/uploads/Green-note-vert.png',
+                        './storage/assets/uploads/Green-note-jaune.png',
+                        './storage/assets/uploads/Green-note-rouge.png'
                     ],
 
                     colors: [
                         {
                             note_min: 0,
                             note_max: 6,
-                            imgpath: "./js/Green-note-condition-rouge.png"
+                            imgpath: "./storage/assets/uploads/Green-note-condition-rouge.png"
                         },
                         {
                             note_min: 6,
                             note_max: 8,
-                            imgpath: "./js/Green-note-condition-jaune.png"
+                            imgpath: "./storage/assets/uploads/Green-note-condition-jaune.png"
                         },
                         {
                             note_min: 8,

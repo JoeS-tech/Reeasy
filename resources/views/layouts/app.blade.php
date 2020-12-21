@@ -111,7 +111,7 @@ html, body {
  </style>
 <body>
     <div id="app">
-        <div class="border center"> @yield('notedump') </div>
+        {{-- <div class="border center"> @yield('notedump') </div> --}}
         {{-- <a href="@route('nd.dump')" target="_blank" >Note déchets</a> --}}
     <div class="flex-center position-ref full-height">
         <div class="content">
@@ -121,7 +121,8 @@ html, body {
             </div>
             <div class="links btn ">
                 <p class="rouge"> Collecte des déchets : @yield('notedump')</p>
-                <p>{% images %}</p>
+                <p class="rouge"> Get Anetenne : @yield('noteantenne')</p>
+                {{-- <p>{% images %}</p> --}}
             </div>
         </div>
     </div>

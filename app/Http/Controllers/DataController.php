@@ -159,7 +159,10 @@ class DataController extends Controller
         $note1000 = $note1000_array[$json_antenne1000->nhits] - $note750;
         $GPS1000 = $note1000 * 0.03;
         $res .= '<ul><li>Dans un rayon de 1000 mètres:<span style="display:inline-block; width:10px;"></span>' . $note1000 . '&emsp;&emsp;=>&emsp;&emsp;GPS:<span style="display:inline-block; width:10px;"></span>' . $GPS1000 . '</li><br></ul>';
-        return $res;
+        $total_antenne = $GPS1000 + $GPS750 + $GPS500 + $GPS300;
+        return view('index', ['noteantenne' => $total_antenne]);
+        // $res  .
+        // '<br>' . '&emsp;&emsp;&emsp;Total Antenne GPS: ' . $total_antenne]);
     }
 
 
