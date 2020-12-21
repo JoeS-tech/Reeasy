@@ -116,7 +116,7 @@ html, body {
             </div>
 
             <div class="links btn">
-                <button type="button" class="btn"><a class="btn" href="@route('nd.dump')" target="_blank"> Note déchets</a></button>
+                <button type="button" class="btn"><a class="btn" href="@route('parametre')" target="_blank"> Obtenir les notes des paramètres</a></button>
             </div>
         </div>
     </div>

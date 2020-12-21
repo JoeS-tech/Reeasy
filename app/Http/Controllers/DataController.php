@@ -69,35 +69,30 @@ class DataController extends Controller
 
         $nd = 0.7 * $test + 0.3 * $th_dump;
         $b = number_format($nd, 2);
+        return $b;
 
-        return view('index', ['notedechets' => $b]);
+        // return view('index', ['notedechets' => $b]);
     }
 
     public function affichage()
     {
         return view('layouts/aff');
     }
-/*-----------------------------------------------------Début fonction Antenne-----------------------------------------------*/
-    // public function get_Antenne($RAYON)
-    // {
-    //     $test = "test affichage";
-    //     $url_antenne = 'https://data.opendatasoft.com/api/records/1.0/search/?dataset=sites_mobiles_2g-3g-4g_france_metropolitaine%40public&facet=technologies&facet=commune&facet=nom_epci&geofilter.distance=41.56027025699052%2C9.317871286694595%2C' . $RAYON;
-    //     $antenne = file_get_contents($url_antenne);
-    //     $json_antenne = json_decode($antenne);
-    //     dd($json_antenne);
-    //     return $json_antenne;
-    // }
-    //-------------------------------- Stockage déchets dans la base de données
 
-    // public function store_Dump(Request $request)
-    // {
-    //     $dump = $this->note_Finale_Dump();
-    //     $dum = new Dumtable();
-    //     $dum->dumQty = $request->$dump;
-    //     $dum->save();
-    // }
 
-    //--------------------- fin stockage
+    /*-----début test affichage deux paramètres dans la même vue--------*/
+    /*-----------------------------------------------------Début--- fonction Antenne-----------------------------------------------*/
+
+
+    public function parametre()
+    {
+        $param1 = $this->note_Finale_Dump();
+        // dd($param1);
+        $param2 = $this->All_Antenne();
+        // dd($param2);
+        return view('index', ['notedechets' => $param1], ['noteantenne' => $param2]);
+    }
+    /*-----------------------------------------------------fin --fonction Antenne-----------------------------------------------*/
     public function calc_Antenne($RAYON)
     {
         $url_antenne = 'https://data.opendatasoft.com/api/records/1.0/search/?dataset=sites_mobiles_2g-3g-4g_france_metropolitaine%40public&facet=technologies&facet=commune&facet=nom_epci&geofilter.distance=41.56027025699052%2C9.317871286694595%2C' . $RAYON;
@@ -159,7 +154,9 @@ class DataController extends Controller
         $GPS1000 = $note1000 * 0.03;
         $res .= '<ul><li>Dans un rayon de 1000 mètres:<span style="display:inline-block; width:10px;"></span>' . $note1000 . '&emsp;&emsp;=>&emsp;&emsp;GPS:<span style="display:inline-block; width:10px;"></span>' . $GPS1000 . '</li><br></ul>';
         $total_antenne = $GPS1000 + $GPS750 + $GPS500 + $GPS300;
-        return view('index', ['noteantenne' => $total_antenne]);
+        // return view('index', ['noteantenne' => $total_antenne]);
+        // dd($total_antenne );
+        return $total_antenne;
         // $res  .
         // '<br>' . '&emsp;&emsp;&emsp;Total Antenne GPS: ' . $total_antenne]);
     }

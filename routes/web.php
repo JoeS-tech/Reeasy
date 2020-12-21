@@ -70,3 +70,8 @@ Route::get('/getantenne1000', 'DataController@get_Antenne1000')->name('get.anten
 Route::get('/pollution', 'TestController@get_Pollution');
 // Route pour récupérer les valeurs de All_Antenne par l'url.
 Route::get('/getallantenne', 'DataController@All_Antenne')->name('get.all.antenne');
+
+
+//--------------test affichage deux param dans la même vue
+
+Route::get('/parametres', 'DataController@parametre')->name('parametre');
