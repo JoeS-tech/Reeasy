@@ -150,6 +150,138 @@ class DataController extends Controller
             return $lines;
         }
 
+        function read($csv)
+        {
+            $file = fopen($csv, 'r');
+            while (!feof($file)) {
+                $lines[] = fgetcsv($file);
+            }
+            fclose($file);
+            return $lines;
+        }
+
+        // Définir le chemin d'accès au fichier CSV
+        $csv = 'https://trouver.datasud.fr/dataset/c9b4ec5b-fa45-4d71-b72a-9a067564b3fe/resource/787a02c2-0ae6-43d9-ab08-aecc6a56435e/download/mes_sudpaca_annuelle.csv';
+
+        $lines = read($csv);
+
+        $filterlines = array_filter($lines, function ($line) {
+            return $line[1] === "ALPES-MARITIMES" && in_array($line[8], ["NO2", "PM10", "O3", "PM2.5", "BAP"]);
+        });
+
+        $no2 = array_reduce(
+            $filterlines,
+            function ($total, $line) {
+                if ($line[8] === "NO2") {
+                    return ["nombre_de_releves" => $total["nombre_de_releves"] + 1, "total" => $total["total"] + $line[10]];
+                } else {
+                    return $total;
+                }
+            },
+            ["nombre_de_releves" => 0, "total" => 0]
+        );
+
+        $no2 = ($no2["total"] / $no2["nombre_de_releves"]);
+
+        $notes_no2 = [10, 7.5, 5, 2.5, 0];
+
+        if ($no2 <= 20) {
+            $noteNO2 = $notes_no2[0];
+        } elseif ($no2 <= 30) {
+            $noteNO2 = $notes_no2[1];
+        } elseif ($no2 <= 40) {
+            $noteNO2 = $notes_no2[2];
+        } elseif ($no2 <= 50) {
+            $noteNO2 = $notes_no2[3];
+        } else {
+            $noteNO2 = $notes_no2[4];
+        }
+
+        $o3 = array_reduce(
+            $filterlines,
+            function ($total, $line) {
+                if ($line[8] === "O3") {
+                    return ["nombre_de_releves" => $total["nombre_de_releves"] + 1, "total" => $total["total"] + $line[10]];
+                } else {
+                    return $total;
+                }
+            },
+            ["nombre_de_releves" => 0, "total" => 0]
+        );
+
+        $o3 = ($o3["total"] / $o3["nombre_de_releves"]);
+
+        $notes_o3 = [10, 7.5, 5, 2.5, 0];
+
+        if ($o3 <= 80) {
+            $noteO3 = $notes_o3[0];
+        } elseif ($o3 <= 100) {
+            $noteO3 = $notes_o3[1];
+        } elseif ($o3 <= 120) {
+            $noteO3 = $notes_o3[2];
+        } elseif ($o3 <= 140) {
+            $noteO3 = $notes_o3[3];
+        } else {
+            $noteO3 = $notes_o3[4];
+        }
+
+        $pm2_5 = array_reduce(
+            $filterlines,
+            function ($total, $line) {
+                if ($line[8] === "PM2.5") {
+                    return ["nombre_de_releves" => $total["nombre_de_releves"] + 1, "total" => $total["total"] + $line[10]];
+                } else {
+                    return $total;
+                }
+            },
+            ["nombre_de_releves" => 0, "total" => 0]
+        );
+
+        $pm2_5 = ($pm2_5["total"] / $pm2_5["nombre_de_releves"]);
+
+        $notes_pm2_5 = [10, 5];
+
+        if ($pm2_5 <= 10) {
+            $notePM2_5 = $notes_pm2_5[0];
+        } else {
+            $notePM2_5 = $notes_pm2_5[1];
+        }
+
+        $pm10 = array_reduce(
+            $filterlines,
+            function ($total, $line) {
+                if ($line[8] === "PM10") {
+                    return ["nombre_de_releves" => $total["nombre_de_releves"] + 1, "total" => $total["total"] + $line[10]];
+                } else {
+                    return $total;
+                }
+            },
+            ["nombre_de_releves" => 0, "total" => 0]
+        );
+
+        $pm10 = ($pm10["total"] / $pm10["nombre_de_releves"]);
+
+        $notes_pm10 = [10, 7.5, 5, 2.5, 0];
+
+        if ($pm10 <= 12) {
+            $notePM10 = $notes_pm10[0];
+        } elseif ($pm10 <= 25) {
+            $notePM10 = $notes_pm10[1];
+        } elseif ($pm10 <= 40) {
+            $notePM10 = $notes_pm10[2];
+        } elseif ($pm10 <= 54) {
+            $notePM10 = $notes_pm10[3];
+        } else {
+            $notePM10 = $notes_pm10[4];
+        }
+
+        $note_poll = ($noteNO2 + $noteO3 + $notePM2_5 + $notePM10) / 4;
+        return $note_poll;
+    }
+
+
+
+
         // Définir le chemin d'accès au fichier CSV
         $csv = 'https://trouver.datasud.fr/dataset/c9b4ec5b-fa45-4d71-b72a-9a067564b3fe/resource/787a02c2-0ae6-43d9-ab08-aecc6a56435e/download/mes_sudpaca_annuelle.csv';
 

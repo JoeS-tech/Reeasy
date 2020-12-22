@@ -20,8 +20,10 @@
 
 @section('noteantenne')
 
+
 <h3 class="rouge">
 {{ $noteantenne ?? '' }}
+
 </h3>
 @endsection
 

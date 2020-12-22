@@ -24,3 +24,7 @@ Route::get('/getallantenne', 'DataController@All_Antenne')->name('get.all.antenn
 
 //************-----3--------***********Pollution***********------3--------**************
 Route::get('/pollution', 'TestController@get_Pollution');
+// Route pour pollution.
+Route::get('/pollution', 'TestController@get_Pollution')->name('get.pollution');
+// Route pour récupérer les valeurs de All_Antenne par l'url.
+Route::get('/getallantenne', 'DataController@All_Antenne')->name('get.all.antenne');

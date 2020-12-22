@@ -49822,12 +49822,24 @@
                     api: [],
                     info: null,
                     icon: 0,
-                    images: [
-                        './storage/assets/uploads/Green-note-vert.png',
-                        './storage/assets/uploads/Green-note-jaune.png',
-                        './storage/assets/uploads/Green-note-rouge.png'
-                    ],
 
+                    images: [
+                        {
+                            note_min: 0,
+                            note_max: 6,
+                            imgpath: "./storage/assets/uploads/Green-note-rouge.png"
+                        },
+                        {
+                            note_min: 6,
+                            note_max: 8,
+                            imgpath: "./storage/assets/uploads/Green-note-jaune.png"
+                        },
+                        {
+                            note_min: 8,
+                            note_max: 10,
+                            imgpath: "./storage/assets/uploads/Green-note-vert.png"
+                        }
+                    ],
                     colors: [
                         {
                             note_min: 0,
@@ -49866,6 +49878,14 @@
                 methods: {
                     getColorFromNote(note) {
                         return this.colors.reduce((reducer, current) => {
+                            if (note <= current.note_max && note > current.note_min) {
+                                reducer = current.imgpath;
+                            }
+                            return reducer;
+                        }, '');
+                    },
+                    getImageFromNote(note) {
+                        return this.images.reduce((reducer, current) => {
                             if (note <= current.note_max && note > current.note_min) {
                                 reducer = current.imgpath;
                             }
