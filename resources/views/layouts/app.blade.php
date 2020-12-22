@@ -36,7 +36,7 @@
     color: red;
 }
 .jaune{
-    color: rgb(224, 203, 11);
+    color: rgb(211, 190, 6);
 }
 .bleu{
     color: blue;
@@ -123,10 +123,10 @@ html, body {
             <div class="content">
 
                 <div class="title m-b-md">
-                    <img src="logo.png"/> <br>
+                    <img :src="logo"/> <br>
                     {{-- Green Note <br> --}}
-
-                    <img src="Note3.png" />
+                    <img :src="getImageFromNote(4.47)" />
+                    {{-- <img src="Note3.png" /> --}}
                 </div>
 
                 <div class="links btn ">

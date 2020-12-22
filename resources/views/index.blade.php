@@ -29,7 +29,7 @@
 
 @section('notepollution')
 
-<h3 class="rouge">
+<h3 class="jaune">
 {{ $notepollution ?? '' }}
 </h3>
 @endsection
