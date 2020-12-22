@@ -120,21 +120,14 @@ html, body {
 
                 <div class="title m-b-md">
                     Green Note <br>
-                    <img :src="getImageFromNote(2.96)" />
-
+                    <img src="Note3.png" />
                 </div>
 
                 <div class="links btn ">
                     <p class="bleu">  Voici votre Green note :  @yield('notefinale')</p>
-
                     <p class="rouge">  <img src="Picto2.png"> Réseau propre : @yield('noteantenne')</p>
-
                     <p class="rouge">  <img src="Picto2.png">Collecte des déchets : @yield('notedump')</p>
-
                     <p class="rouge">  <img src="Picto2.png"> Propreté de l'air : @yield('notepollution')</p>
-                    <p class="rouge">  <img :src="getColorFromNote(1.87)" /> Réseau propre : @yield('noteantenne')</p>
-
-                    <p class="rouge">  <img :src="getColorFromNote(4.05)" />Collecte des déchets : @yield('notedump')</p>
                 </div>
 
             </div>
