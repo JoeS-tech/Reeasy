@@ -119,7 +119,9 @@ html, body {
             <div class="content">
 
                 <div class="title m-b-md">
-                    Green Note <br>
+                    <img src="logo.png"/> <br>
+                    {{-- Green Note <br> --}}
+
                     <img src="Note3.png" />
                 </div>
 
@@ -127,7 +129,7 @@ html, body {
                     <p class="bleu">  Voici votre Green note :  @yield('notefinale')</p>
                     <p class="rouge">  <img src="Picto2.png"> Réseau propre : @yield('noteantenne')</p>
                     <p class="rouge">  <img src="Picto2.png">Collecte des déchets : @yield('notedump')</p>
-                    <p class="rouge">  <img src="Picto2.png"> Propreté de l'air : @yield('notepollution')</p>
+                    <p class="rouge">  <img src="Picto3.png"> Propreté de l'air : @yield('notepollution')</p>
                 </div>
 
             </div>
