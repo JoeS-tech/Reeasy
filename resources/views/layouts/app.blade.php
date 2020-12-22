@@ -123,7 +123,9 @@ html, body {
             <div class="content">
 
                 <div class="title m-b-md">
-                    Green Note <br>
+                    <img src="logo.png"/> <br>
+                    {{-- Green Note <br> --}}
+
                     <img src="Note3.png" />
                 </div>
 
