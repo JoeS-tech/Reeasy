@@ -49821,7 +49821,7 @@
                 data: {
                     api: [],
                     info: null,
-                    icon: 0,
+                    logo: "./storage/assets/uploads/logo.png",
 
                     images: [
                         {
@@ -49854,7 +49854,7 @@
                         {
                             note_min: 8,
                             note_max: 10,
-                            imgpath: "./js/Green-note-condition-vert.png"
+                            imgpath: "./storage/assets/uploads/Green-note-condition-vert.png"
                         }
                     ],
                     labels: [

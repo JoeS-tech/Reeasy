@@ -35,6 +35,9 @@
 .rouge{
     color: red;
 }
+.jaune{
+    color: rgb(224, 203, 11);
+}
 .bleu{
     color: blue;
     font-size: 30px;
@@ -42,7 +45,7 @@
 }
 
 html, body {
-
+                background-color: #f8fafc;
                 color: #636b6f;
                 font-family: 'Nunito', sans-serif;
                 font-weight: 200;
@@ -91,6 +94,7 @@ html, body {
 
             .m-b-md{
                 margin-top: 200px;
+                font-weight: 25px;
             }
 
             .btn{
@@ -125,9 +129,9 @@ html, body {
 
                 <div class="links btn ">
                     <p class="bleu">  Voici votre Green note :  @yield('notefinale')</p>
-                    <p class="rouge">  <img src="Picto2.png"> Réseau propre : @yield('noteantenne')</p>
-                    <p class="rouge">  <img src="Picto2.png">Collecte des déchets : @yield('notedump')</p>
-                    <p class="rouge">  <img src="Picto2.png"> Propreté de l'air : @yield('notepollution')</p>
+                    <p class="rouge">  <img :src="getColorFromNote(1.87)" /> Réseau propre : @yield('noteantenne')</p>
+                    <p class="rouge">  <img :src="getColorFromNote(4.05)" /> Collecte des déchets : @yield('notedump')</p>
+                    <p class="jaune">  <img :src="getColorFromNote(7.5)" /> Propreté de l'air : @yield('notepollution')</p>
                 </div>
 
             </div>
