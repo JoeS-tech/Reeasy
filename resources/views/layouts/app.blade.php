@@ -127,8 +127,10 @@ html, body {
                     <p class="bleu">  Voici votre Green note :  @yield('notefinale')</p>
 
                     <p class="rouge">  <img src="Picto2.png"> Réseau propre : @yield('noteantenne')</p>
-                  
+
                     <p class="rouge">  <img src="Picto2.png">Collecte des déchets : @yield('notedump')</p>
+
+                    <p class="rouge">  <img src="Picto2.png"> Propreté de l'air : @yield('notepollution')</p>
                 </div>
 
             </div>

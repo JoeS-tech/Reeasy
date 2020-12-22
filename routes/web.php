@@ -5,11 +5,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-
-// Auth::routes();
-
-
 Route::get('/home', 'HomeController@index')->name('home');
+
+
+//************-----1--------***********page de garde + page Green Note***********------1--------**************
 
 // Page de garde
 Route::get('/affichage', 'DataController@affichage')->name('affichage');
@@ -17,43 +16,11 @@ Route::get('/affichage', 'DataController@affichage')->name('affichage');
 // Green Note
 Route::get('/parametres', 'DataController@parametre')->name('parametre');
 
-//************-------------***********Antenne***********--------------**************
+//************-----2--------***********Antenne***********------2--------**************
 
-Route::get('/getantenne', 'DataController@get_Antenne')->name('get.antenne');
-// // Route pour récupérer les valeurs de Antenne par l'url.
-// Route::get('/getantenne', 'DataController@get_Antenne')->name('get.antenne');
-
-// Routes pour le paramètre transport********************-----------*****************-----------*************
-
-// Route pour tester l'affichage de la data de l'url json Transport
-Route::get('/gettrans', 'ParametreController@aff_Json')->name('get.trans');
-
-Route::get('/getantenne/{rayon}', 'DataController@get_Antenne');
-
-// // Route pour récupérer les valeurs de Antenne300 par l'url.
-// Route::get('/getantenne300', 'DataController@get_Antenne300')->name('get.antenne300');
-
-// // Route pour récupérer les valeurs de Antenne500 par l'url.
-// Route::get('/getantenne500', 'DataController@get_Antenne500')->name('get.antenne500');
-
-// // Route pour récupérer les valeurs de Antenne750 par l'url.
-// Route::get('/getantenne750', 'DataController@get_Antenne750')->name('get.antenne750');
-
-// // Route pour récupérer les valeurs de Antenne1000 par l'url.
-// Route::get('/getantenne1000', 'DataController@get_Antenne1000')->name('get.antenne1000');
-
-// Route pour récupérer les valeurs de calc_Antenne par l'url.
-Route::get('/calcantenne/{rayon}', 'DataController@calc_Antenne')->name('calc.antenne');
-
-// Route pour récupérer les valeurs de calc_Antenne par l'url.
-Route::get('/calcantenne/{rayon}', 'DataController@calc_Antenne')->name('calc.antenne');
-
-// Route pour récupérer les valeurs de Antenne1000 par l'url.
-Route::get('/getantenne1000', 'DataController@get_Antenne1000')->name('get.antenne1000');
-
-//--------------abdel pollution
-
-// Route pour pollution.
-Route::get('/pollution', 'TestController@get_Pollution');
-// Route pour récupérer les valeurs de All_Antenne par l'url.
+// Note paramètre Réseau Propre
 Route::get('/getallantenne', 'DataController@All_Antenne')->name('get.all.antenne');
+
+
+//************-----3--------***********Pollution***********------3--------**************
+Route::get('/pollution', 'TestController@get_Pollution');

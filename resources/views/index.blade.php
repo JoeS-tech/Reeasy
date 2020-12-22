@@ -24,3 +24,10 @@
 {{ $noteantenne ?? '' }}
 </h3>
 @endsection
+
+@section('notepollution')
+
+<h3 class="rouge">
+{{ $notepollution ?? '' }}
+</h3>
+@endsection
