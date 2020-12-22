@@ -152,43 +152,140 @@ class DataController extends Controller
         // '<br>' . '&emsp;&emsp;&emsp;Total Antenne GPS: ' . $total_antenne]);
     }
 
+    public function get_Pollution()
+    {
 
-    // public function get_antenne300()
-    // {
-    //     $url_antenne = 'https://data.opendatasoft.com/api/records/1.0/search/?dataset=sites_mobiles_2g-3g-4g_france_metropolitaine%40public&facet=technologies&facet=commune&facet=nom_epci&geofilter.distance=41.56027025699052%2C9.317871286694595%2C300';
-    //         $antenne = file_get_contents($url_antenne);
-    //         $json_antenne = json_decode($antenne);
-    //         $RAYON = $note = array(0 => 10, 1 => 7, 2 => 6, 3 => 5, 4 => 4, 5 => 3, 6 => 2, 7 => 1, 8 => 0, 9 => 0, 10 => 0);
-    //         //dd($json_antenne);
-    //         return $note[$json_antenne->nhits];
-    // }
-    // public function get_antenne500()
-    // {
-    //     $url_antenne = 'https://data.opendatasoft.com/api/records/1.0/search/?dataset=sites_mobiles_2g-3g-4g_france_metropolitaine%40public&facet=technologies&facet=commune&facet=nom_epci&geofilter.distance=41.56027025699052%2C9.317871286694595%2C500';
-    //     $antenne = file_get_contents($url_antenne);
-    //     $json_antenne = json_decode($antenne);
-    //     $note = array(0 => 10, 1 => 8, 2 => 7, 3 => 6, 4 => 5, 5 => 4, 6 => 3, 7 => 2, 8 => 1, 9 => 0, 10 => 0);
-    //     //dd($json_antenne);
-    //     return $note[$json_antenne->nhits];
-    // }
-    // public function get_antenne750()
-    // {
-    //     $url_antenne = 'https://data.opendatasoft.com/api/records/1.0/search/?dataset=sites_mobiles_2g-3g-4g_france_metropolitaine%40public&facet=technologies&facet=commune&facet=nom_epci&geofilter.distance=41.56027025699052%2C9.317871286694595%2C750';
-    //     $antenne = file_get_contents($url_antenne);
-    //     $json_antenne = json_decode($antenne);
-    //     $note = array(0 => 10, 1 => 9, 2 => 8, 3 => 7, 4 => 6, 5 => 5, 6 => 4, 7 => 3, 8 => 2, 9 => 1, 10 => 0);
-    //     //dd($json_antenne);
-    //     return $note[$json_antenne->nhits];
-    // }
-    // public function get_antenne1000()
-    // {
-    //     $url_antenne = 'https://data.opendatasoft.com/api/records/1.0/search/?dataset=sites_mobiles_2g-3g-4g_france_metropolitaine%40public&facet=technologies&facet=commune&facet=nom_epci&geofilter.distance=41.56027025699052%2C9.317871286694595%2C1000';
-    //     $antenne = file_get_contents($url_antenne);
-    //     $json_antenne = json_decode($antenne);
-    //     $note = array(0 => 10, 1 => 10, 2 => 9, 3 => 8, 4 => 7, 5 => 6, 6 => 5, 7 => 4, 8 => 3, 9 => 2, 10 => 1);
-    //     //dd($json_antenne);
-    //     return $note[$json_antenne->nhits];
-    // }
+        function read($csv)
+        {
+            $file = fopen($csv, 'r');
+            while (!feof($file)) {
+                $lines[] = fgetcsv($file);
+            }
+            fclose($file);
+            return $lines;
+        }
+
+        // Définir le chemin d'accès au fichier CSV
+        $csv = 'https://trouver.datasud.fr/dataset/c9b4ec5b-fa45-4d71-b72a-9a067564b3fe/resource/787a02c2-0ae6-43d9-ab08-aecc6a56435e/download/mes_sudpaca_annuelle.csv';
+
+        $lines = read($csv);
+
+        $filterlines = array_filter($lines, function ($line) {
+            return $line[1] === "ALPES-MARITIMES" && in_array($line[8], ["NO2", "PM10", "O3", "PM2.5", "BAP"]);
+        });
+
+        $no2 = array_reduce(
+            $filterlines,
+            function ($total, $line) {
+                if ($line[8] === "NO2") {
+                    return ["nombre_de_releves" => $total["nombre_de_releves"] + 1, "total" => $total["total"] + $line[10]];
+                } else {
+                    return $total;
+                }
+            },
+            ["nombre_de_releves" => 0, "total" => 0]
+        );
+
+        $no2 = ($no2["total"] / $no2["nombre_de_releves"]);
+
+        $notes_no2 = [10, 7.5, 5, 2.5, 0];
+
+        if ($no2 <= 20) {
+            $noteNO2 = $notes_no2[0];
+        } elseif ($no2 <= 30) {
+            $noteNO2 = $notes_no2[1];
+        } elseif ($no2 <= 40) {
+            $noteNO2 = $notes_no2[2];
+        } elseif ($no2 <= 50) {
+            $noteNO2 = $notes_no2[3];
+        } else {
+            $noteNO2 = $notes_no2[4];
+        }
+
+        $o3 = array_reduce(
+            $filterlines,
+            function ($total, $line) {
+                if ($line[8] === "O3") {
+                    return ["nombre_de_releves" => $total["nombre_de_releves"] + 1, "total" => $total["total"] + $line[10]];
+                } else {
+                    return $total;
+                }
+            },
+            ["nombre_de_releves" => 0, "total" => 0]
+        );
+
+        $o3 = ($o3["total"] / $o3["nombre_de_releves"]);
+
+        $notes_o3 = [10, 7.5, 5, 2.5, 0];
+
+        if ($o3 <= 80) {
+            $noteO3 = $notes_o3[0];
+        } elseif ($o3 <= 100) {
+            $noteO3 = $notes_o3[1];
+        } elseif ($o3 <= 120) {
+            $noteO3 = $notes_o3[2];
+        } elseif ($o3 <= 140) {
+            $noteO3 = $notes_o3[3];
+        } else {
+            $noteO3 = $notes_o3[4];
+        }
+
+        $pm2_5 = array_reduce(
+            $filterlines,
+            function ($total, $line) {
+                if ($line[8] === "PM2.5") {
+                    return ["nombre_de_releves" => $total["nombre_de_releves"] + 1, "total" => $total["total"] + $line[10]];
+                } else {
+                    return $total;
+                }
+            },
+            ["nombre_de_releves" => 0, "total" => 0]
+        );
+
+        $pm2_5 = ($pm2_5["total"] / $pm2_5["nombre_de_releves"]);
+
+        $notes_pm2_5 = [10, 5];
+
+        if ($pm2_5 <= 10) {
+            $notePM2_5 = $notes_pm2_5[0];
+        } else {
+            $notePM2_5 = $notes_pm2_5[1];
+        }
+
+        $pm10 = array_reduce(
+            $filterlines,
+            function ($total, $line) {
+                if ($line[8] === "PM10") {
+                    return ["nombre_de_releves" => $total["nombre_de_releves"] + 1, "total" => $total["total"] + $line[10]];
+                } else {
+                    return $total;
+                }
+            },
+            ["nombre_de_releves" => 0, "total" => 0]
+        );
+
+        $pm10 = ($pm10["total"] / $pm10["nombre_de_releves"]);
+
+        $notes_pm10 = [10, 7.5, 5, 2.5, 0];
+
+        if ($pm10 <= 12) {
+            $notePM10 = $notes_pm10[0];
+        } elseif ($pm10 <= 25) {
+            $notePM10 = $notes_pm10[1];
+        } elseif ($pm10 <= 40) {
+            $notePM10 = $notes_pm10[2];
+        } elseif ($pm10 <= 54) {
+            $notePM10 = $notes_pm10[3];
+        } else {
+            $notePM10 = $notes_pm10[4];
+        }
+
+        $note_poll = ($noteNO2 + $noteO3 + $notePM2_5 + $notePM10) / 4;
+        return $note_poll;
+    }
+
+
+
 
     /**
      * Store a newly created resource in storage.
